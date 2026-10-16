@@ -2,66 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Library App</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
+  <header class="app-header">
     <h1>My Library</h1>
-    <div class="header-actions">
-      <button id="newBookBtn" aria-haspopup="dialog">New Book</button>
-      <button id="exportBtn" title="Download library JSON">Export</button>
-      <label class="file-import" title="Import library JSON">
-        Import
-        <input id="importInput" type="file" accept=".json,application/json" aria-label="Import library JSON file">
-      </label>
-      <button id="clearBtn" class="danger">Clear</button>
+    <div class="controls">
+      <button id="newBookBtn" class="btn">New Book</button>
+      <input id="fileInput" type="file" accept="application/json" style="display:none" />
+      <button id="importBtn" class="btn">Import</button>
+      <button id="exportBtn" class="btn">Export</button>
     </div>
   </header>
 
   <main>
-    <section id="booksContainer" class="grid" aria-live="polite" aria-relevant="additions removals"></section>
+    <section id="cards" class="cards"></section>
   </main>
 
-  <!-- Dialog used for both Add and Edit -->
-  <dialog id="bookDialog" aria-labelledby="dialogTitle">
-    <form id="bookForm" class="form" method="dialog" novalidate>
-      <h2 id="dialogTitle">Add Book</h2>
-
-      <input type="hidden" name="id" id="bookId">
-
-      <label>
-        Title
-        <input id="titleInput" name="title" type="text" required autocomplete="off" />
-      </label>
-
-      <label>
-        Author
-        <input id="authorInput" name="author" type="text" required autocomplete="off" />
-      </label>
-
-      <label>
-        Pages
-        <input id="pagesInput" name="pages" type="number" min="1" required />
-      </label>
-
-      <label class="checkbox">
-        <input id="readInput" name="read" type="checkbox" />
-        I've read it
-      </label>
-
-      <label>
-        Notes (optional)
-        <textarea name="notes" id="notesInput" rows="3" placeholder="Short notes, edition, etc."></textarea>
-      </label>
-
-      <menu class="dialog-actions">
-        <button type="button" id="cancelBtn">Cancel</button>
-        <button type="submit" id="saveBtn">Save</button>
-      </menu>
-    </form>
-  </dialog>
+  <!-- Modal for add/edit -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <h2 id="modalTitle">New Book</h2>
+      <form id="bookForm">
+        <label>
+          Title
+          <input type="text" id="title" name="title" required />
+        </label>
+        <label>
+          Author
+          <input type="text" id="author" name="author" required />
+        </label>
+        <label>
+          Pages
+          <input type="number" id="pages" name="pages" min="1" required />
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="read" name="read" />
+          Read
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="btn primary" id="saveBtn">Save</button>
+          <button type="button" class="btn" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js" defer></script>
 </body>
