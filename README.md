@@ -1,4 +1,4 @@
-# Library App — Submission-Ready
+# Library App 
 
 This is a small Library application (HTML/CSS/JS) for the assignment. It demonstrates managing a list of book objects, rendering them, and allowing users to add/edit/remove/toggle read status. It also includes persistence and import/export.
 
