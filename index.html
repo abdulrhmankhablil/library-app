@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Library App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>My Library</h1>
+    <div class="header-actions">
+      <button id="newBookBtn" aria-haspopup="dialog">New Book</button>
+      <button id="exportBtn" title="Download library JSON">Export</button>
+      <label class="file-import" title="Import library JSON">
+        Import
+        <input id="importInput" type="file" accept=".json,application/json" aria-label="Import library JSON file">
+      </label>
+      <button id="clearBtn" class="danger">Clear</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="booksContainer" class="grid" aria-live="polite" aria-relevant="additions removals"></section>
+  </main>
+
+  <!-- Dialog used for both Add and Edit -->
+  <dialog id="bookDialog" aria-labelledby="dialogTitle">
+    <form id="bookForm" class="form" method="dialog" novalidate>
+      <h2 id="dialogTitle">Add Book</h2>
+
+      <input type="hidden" name="id" id="bookId">
+
+      <label>
+        Title
+        <input id="titleInput" name="title" type="text" required autocomplete="off" />
+      </label>
+
+      <label>
+        Author
+        <input id="authorInput" name="author" type="text" required autocomplete="off" />
+      </label>
+
+      <label>
+        Pages
+        <input id="pagesInput" name="pages" type="number" min="1" required />
+      </label>
+
+      <label class="checkbox">
+        <input id="readInput" name="read" type="checkbox" />
+        I've read it
+      </label>
+
+      <label>
+        Notes (optional)
+        <textarea name="notes" id="notesInput" rows="3" placeholder="Short notes, edition, etc."></textarea>
+      </label>
+
+      <menu class="dialog-actions">
+        <button type="button" id="cancelBtn">Cancel</button>
+        <button type="submit" id="saveBtn">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
